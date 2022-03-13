@@ -1,0 +1,10 @@
+bin
+.env
+static/img/products/elko.is/*
+static/img/products/ht.is/*
+static/img/products/rafha.is/*
+static/img/products/rafland.is/*
+!static/img/products/elko.is/.gitkeep
+!static/img/products/ht.is/.gitkeep
+!static/img/products/rafha.is/.gitkeep
+!static/img/products/rafland.is/.gitkeep

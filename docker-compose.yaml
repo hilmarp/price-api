@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    environment: 
+      MYSQL_ROOT_PASSWORD: price
+      MYSQL_DATABASE: price
+      MYSQL_USER: price
+      MYSQL_PASSWORD: price
+    volumes:
+      - db_data:/var/lib/mysql
+
+  redis:
+    build:
+      context: .
+      dockerfile: docker/redis/Dockerfile
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+
+  elasticsearch:
+    image: elasticsearch:7.6.2
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
+  kibana:
+    image: kibana:7.6.2
+    ports:
+      - 5601:5601
+
+  mongo:
+    image: mongo:4.4.3
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  redis_data:
+  es_data:
+  db_data:
+  mongo_data:
